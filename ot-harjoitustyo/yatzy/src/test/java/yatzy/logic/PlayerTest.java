@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Yatzy;
+package yatzy.logic;
 
-import java.util.*;
+import yatzy.logic.Player;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,9 +17,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author aleksi
  */
-public class DiceTest {
+public class PlayerTest {
     
-    public DiceTest() {
+    public PlayerTest() {
     }
     
     @BeforeAll
@@ -39,15 +39,23 @@ public class DiceTest {
     }
 
     /**
-     * Test of throwDice method, of class Dice.
+     * Test of getName method, of class Player.
      */
     @Test
-    public void testThrowDice() {
-        System.out.println("throwDice");
-        Dice dice = new Dice(new Random(12345));
-        int[] expResult = new int[]{2, 5, 4, 1, 2};
-        int[] result = dice.throwDice(5);
-        assertArrayEquals(expResult, result);
+    public void testGetName() {
+        System.out.println("getName");
+        String expResult = "Testing";
+        Player player = new Player("Testing");
+        String result = player.getName();
+        assertEquals(expResult, result);
     }
-    
+
+    /**
+     * Test of getTotalScore method, of class Player.
+     */
+
+    /**
+     * Test of addCombination method, of class Player.
+     */
+
 }

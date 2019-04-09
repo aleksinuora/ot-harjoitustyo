@@ -1,4 +1,4 @@
-package Yatzy;
+package yatzy.logic;
 
 import java.util.*;
 /**
@@ -22,9 +22,16 @@ public class Yatzy {
             
             Player player = new Player("Timo Testaaja");
             
-            
-            System.out.print("Kuinka montaa noppaa heitetään? ");
-            System.out.println("Tulos: " + Arrays.toString(dice.throwDice(Integer.parseInt(reader.nextLine()))));
+            int[] result = dice.throwDice(5);
+            System.out.println("Tulos: " + Arrays.toString(result));
+            System.out.println("Mitkä luvut pisteytetään?");
+            String target = reader.nextLine();
+            if (player.getScorecard().addTwoPairs(result) == true) {
+            System.out.print("Pisteitä kohtaan " + target + " tuli: " 
+                    + player.getScorecard().getLowerSection().get(target));
+            } else {
+                System.out.println("Virhe pisteiden lisäämisessä.");
+            }
         }
     } 
 }

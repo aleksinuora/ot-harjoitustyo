@@ -1,4 +1,4 @@
-package Yatzy;
+package yatzy.logic;
 
 import java.util.*;
 /**
