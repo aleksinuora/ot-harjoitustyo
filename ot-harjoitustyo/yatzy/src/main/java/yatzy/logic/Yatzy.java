@@ -1,15 +1,19 @@
 package yatzy.logic;
 
+import yatzy.logic.domain.Player;
+import yatzy.logic.domain.Dice;
 import java.util.*;
+import yatzy.ui.Gui;
 /**
  *
  * @author aleksi
  */
-public class Yatzy {
-    
-   public static void main(String[] args) {
+public class Yatzy {    
+
+    public static void main(String[] args) {
         boolean testing = true;
-       
+        
+        Gamelogic logic = new Gamelogic();
         Random r = new Random();
         Dice dice = new Dice(r);
         Scanner reader = new Scanner(System.in);
@@ -22,16 +26,8 @@ public class Yatzy {
             
             Player player = new Player("Timo Testaaja");
             
-            int[] result = dice.throwDice(5);
-            System.out.println("Tulos: " + Arrays.toString(result));
-            System.out.println("Mitkä luvut pisteytetään?");
-            String target = reader.nextLine();
-            if (player.getScorecard().addTwoPairs(result) == true) {
-            System.out.print("Pisteitä kohtaan " + target + " tuli: " 
-                    + player.getScorecard().getLowerSection().get(target));
-            } else {
-                System.out.println("Virhe pisteiden lisäämisessä.");
-            }
+            Gui gui = new Gui(logic);
+            gui.addPlayersScreen();
         }
     } 
 }

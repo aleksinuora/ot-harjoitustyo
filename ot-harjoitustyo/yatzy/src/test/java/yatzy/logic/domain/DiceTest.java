@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package yatzy.logic;
+package yatzy.logic.domain;
 
-import yatzy.logic.Player;
+import yatzy.logic.domain.Dice;
+import java.util.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author aleksi
  */
-public class PlayerTest {
+public class DiceTest {
     
-    public PlayerTest() {
+    public DiceTest() {
     }
     
     @BeforeAll
@@ -39,23 +40,15 @@ public class PlayerTest {
     }
 
     /**
-     * Test of getName method, of class Player.
+     * Test of throwDice method, of class Dice.
      */
     @Test
-    public void testGetName() {
-        System.out.println("getName");
-        String expResult = "Testing";
-        Player player = new Player("Testing");
-        String result = player.getName();
-        assertEquals(expResult, result);
+    public void testThrowDice() {
+        System.out.println("throwDice");
+        Dice dice = new Dice(new Random(12345));
+        int[] expResult = new int[]{2, 5, 4, 1, 2};
+        int[] result = dice.throwDice(5);
+        assertArrayEquals(expResult, result);
     }
-
-    /**
-     * Test of getTotalScore method, of class Player.
-     */
-
-    /**
-     * Test of addCombination method, of class Player.
-     */
-
+    
 }

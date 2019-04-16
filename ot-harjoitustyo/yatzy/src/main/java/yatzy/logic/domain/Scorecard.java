@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package yatzy.logic;
+package yatzy.logic.domain;
 
 import java.util.*;
 /**
@@ -27,30 +27,30 @@ public class Scorecard {
     
     
     public boolean addUpperScore(int[] result, Integer target) {
-        if (upperSection.containsKey(target)) return false;
-        
-        int score = 0;
-        
+        if (upperSection.containsKey(target)) {
+            return false;
+        }        
+        int score = 0;        
         for (int i = 0; i < 5; i++) {
-            if (result[i] == target) score += target;
+            if (result[i] == target) {
+                score += target;
+            }
         }
-        upperSection.put(target, score);
-        
+        upperSection.put(target, score);        
         upperScore += score;
-        totalScore += score;
-        
+        totalScore += score;        
         if (this.bonusSituation && (upperScore) >= 63) {
             this.bonusSituation = false;
             upperScore += 50;
             totalScore += 50;
         }
-
         return true;
     }
     
     public boolean addOnePair(int[] result) {
-        if (lowerSection.containsKey("onePair")) return false;
-        
+        if (lowerSection.containsKey("onePair")) {
+            return false;
+        }       
         Arrays.sort(result);
         for (int i = 3; i >= 0; i--) {
             if (result[i] == result [i + 1]) {
@@ -58,18 +58,17 @@ public class Scorecard {
                 totalScore += result[i] * 2;
                 return true;
             } 
-        }
-        
+        }        
         lowerSection.put("onePair", 0);
         return true;
     }
     
     public boolean addTwoPairs(int[] result) {
-        if (lowerSection.containsKey("twoPairs")) return false;
-        
+        if (lowerSection.containsKey("twoPairs")) {
+            return false;
+        }        
         int firstPair = 0;
-        int secondPair = 0;
-        
+        int secondPair = 0;        
         Arrays.sort(result);
         for (int i = 3; i >= 2; i--) {
             if (result[i] == result[i + 1]) {
@@ -89,8 +88,9 @@ public class Scorecard {
     }
     
     public boolean addThreeOfKind(int[] result) {
-        if (lowerSection.containsKey("threeOfKind")) return false;
-        
+        if (lowerSection.containsKey("threeOfKind")) {
+            return false;
+        }        
         Arrays.sort(result);
         for (int i = 2; i >= 0; i--) {
             if (result[i] == result[i + 1] && result[i] == result[i + 2]) {
@@ -104,8 +104,9 @@ public class Scorecard {
     }
     
     public boolean addFourOfKind(int[] result) {
-        if (lowerSection.containsKey("fourOfKind")) return false;
-        
+        if (lowerSection.containsKey("fourOfKind")) {
+            return false;
+        }        
         Arrays.sort(result);
         for (int i = 1; i >= 0; i--) {
             if (result[i] == result[i + 1] && result[i] == result[i + 2] 
@@ -120,8 +121,9 @@ public class Scorecard {
     }
     
     public boolean addSmallStraight(int[] result) {
-        if (lowerSection.containsKey("smallStraight")) return false;
-        
+        if (lowerSection.containsKey("smallStraight")) {
+            return false;
+        }        
         Arrays.sort(result);
         for (int i = 0; i < 5; i++) {
             if (result[i] != i + 1) {
@@ -135,8 +137,9 @@ public class Scorecard {
     }
     
     public boolean addLargeStraight(int[] result) {
-        if (lowerSection.containsKey("largeStraight")) return false;
-        
+        if (lowerSection.containsKey("largeStraight")) {
+            return false;
+        }        
         Arrays.sort(result);
         for (int i = 1; i < 5; i++) {
             if (result[i] != i + 2) {
@@ -150,40 +153,42 @@ public class Scorecard {
     }
     
     public boolean addFullHouse(int[] result) {
-        if (lowerSection.containsKey("fullHouse")) return false;
-        
+        if (lowerSection.containsKey("fullHouse")) {
+            return false;
+        }        
         Arrays.sort(result);
-        int score = 0;
-        
+        int score = 0;        
         for (int i = 0; i < 5; i++) {
             score += result[i];
+        }        
+        if ((result[0] != result[1]) || (result[3] != result[4])) {
+            score = 0;
         }
-        
-        if ((result[0] != result[1]) || (result[3] != result[4])) score = 0;
-        if ((result[2] != result[0]) && (result[2] != result[4])) score = 0;
-        
+        if ((result[2] != result[0]) && (result[2] != result[4])) {
+            score = 0;
+        }        
         lowerSection.put("fullHouse", score);
         totalScore += score;
         return true;
     }
     
     public boolean addChance(int[] result) {
-        if (lowerSection.containsKey("chance")) return false;
-        
-        int score = 0;
-        
+        if (lowerSection.containsKey("chance")) {
+            return false;
+        }        
+        int score = 0;        
         for (int i = 0; i < 5; i++) {
             score += result[i];
-        }
-        
+        }        
         lowerSection.put("chance", score);
         totalScore += score;
         return true;
     }
     
     public boolean addYatzy(int[] result) {
-        if (lowerSection.containsKey("yatzy")) return false;
-        
+        if (lowerSection.containsKey("yatzy")) {
+            return false;
+        }        
         for (int i = 0; i < 5; i++) {
             if (result[i] != result[0]) {
                 lowerSection.put("yatzy", 0);
