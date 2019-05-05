@@ -4,9 +4,15 @@ Simppeli Yatzy-peli 1-4 pelaajalle, graafisella käyttöliittymällä. Peli toim
 
 ## Dokumentaatio
 
-[Työaikakirjanpito](https://github.com/aleksinuora/ot-harjoitustyo/blob/master/ot-harjoitustyo/dokumentaatio/tuntikirjanpito.md)
+[Käyttöohje](https://github.com/aleksinuora/ot-harjoitustyo/blob/master/ot-harjoitustyo/dokumentaatio/kayttoohje.md)
+
+[Release](https://github.com/aleksinuora/ot-harjoitustyo/releases/tag/yatzy)
 
 [Vaatimusmäärittely](https://github.com/aleksinuora/ot-harjoitustyo/blob/master/ot-harjoitustyo/dokumentaatio/vaatimusmaarittely.md)
+
+[Testausdokumentti](https://github.com/aleksinuora/ot-harjoitustyo/blob/master/ot-harjoitustyo/dokumentaatio/testausdokumentti.md)
+
+[Työaikakirjanpito](https://github.com/aleksinuora/ot-harjoitustyo/blob/master/ot-harjoitustyo/dokumentaatio/tuntikirjanpito.md)
 
 
 ## Komentorivitoiminnot
