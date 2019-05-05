@@ -18,37 +18,17 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author aleksi
  */
-public class DiceTest {
-    
-    public DiceTest() {
-    }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
+public class DiceTest {    
 
     /**
-     * Test of throwDice method, of class Dice.
+     * Test of rollOnce method, of class Dice.
      */
     @Test
-    public void testThrowDice() {
-        System.out.println("throwDice");
+    public void testRollOnce() {
         Dice dice = new Dice(new Random(12345));
-        int[] expResult = new int[]{2, 5, 4, 1, 2};
-        int[] result = dice.throwDice(5);
-        assertArrayEquals(expResult, result);
+        int expResult = 2;
+        int result = dice.rollOnce();
+        assertEquals(expResult, result);
     }
     
 }

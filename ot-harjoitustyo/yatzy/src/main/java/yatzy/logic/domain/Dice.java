@@ -2,26 +2,28 @@ package yatzy.logic.domain;
 
 import java.util.*;
 /**
+ * Class for simulating dice rolls.
  *
  * @author aleksi
  */
 public class Dice {
     Random r;
     
+    /**
+     * Class constructor.
+     *
+     * @param r Random number generator from the Random-class
+     */
     public Dice(Random r) {
         this.r = r;
-    }
+    }    
     
-    /** 
-     * Arvotaan n kokonaislukua väliltä [1,6] ja palautetaan listana 
-     * @param n
-     * @return 
+    /**
+     * Roll one d6-dice.
+     *
+     * @return Random int-value between [1,6]
      */
-    public int[] throwDice(int n) {
-        int[] results = new int[n];
-        for (int i = 0; i < n; i++) {
-            results[i] = r.nextInt(6) + 1;
-        }
-        return results;
+    public int rollOnce() {
+        return r.nextInt(6) + 1;
     }
 }

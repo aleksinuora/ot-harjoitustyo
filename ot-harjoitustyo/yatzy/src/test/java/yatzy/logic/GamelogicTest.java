@@ -5,37 +5,25 @@
  */
 package yatzy.logic;
 
-import java.util.HashMap;
+import java.util.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import yatzy.logic.domain.Player;
+import yatzy.logic.domain.Dice;
 
 /**
  *
  * @author aleksi
  */
 public class GamelogicTest {
+    Dice dice;
     
     public GamelogicTest() {
-    }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
+        this.dice = new Dice(new Random(12345));
     }
 
     /**
@@ -43,12 +31,34 @@ public class GamelogicTest {
      */
     @Test
     public void testAddPlayer() {
-        System.out.println("addPlayer");
-        String name = "";
-        Gamelogic instance = new Gamelogic();
-        instance.addPlayer(name);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Gamelogic logic = new Gamelogic(this.dice);
+        logic.addPlayer("kalle");
+        logic.addPlayer("kalle");
+        assert(logic.playerList.containsKey("kalle"));
+        assert(logic.playerList.containsKey("kalle1"));
+    }
+
+    /**
+     * Test of getPlayer method, of class Gamelogic.
+     */
+    @Test
+    public void testGetPlayer() {
+        Gamelogic logic = new Gamelogic(this.dice);
+        Player player = new Player("kalle");
+        logic.playerList.put("kalle", player);
+        assertEquals(logic.getPlayer("kalle"), player);
+    }
+
+    /**
+     * Test of getPlayerScore method, of class Gamelogic.
+     */
+    @Test
+    public void testGetPlayerScore() {
+        Gamelogic logic = new Gamelogic(this.dice);
+        Player player = new Player("kalle");
+        logic.playerList.put("kalle", player);
+        player.getScorecard().addYatzy(new int[5]);
+        assertEquals(logic.getPlayerScore("kalle"), 50);
     }
 
     /**
@@ -56,13 +66,22 @@ public class GamelogicTest {
      */
     @Test
     public void testGetPlayerList() {
-        System.out.println("getPlayerList");
-        Gamelogic instance = new Gamelogic();
-        HashMap expResult = null;
-        HashMap result = instance.getPlayerList();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Gamelogic logic = new Gamelogic(this.dice);
+        logic.addPlayer("kalle");
+        logic.addPlayer("kalle");
+        assert(logic.getPlayerList().containsKey("kalle"));
+        assert(logic.getPlayerList().containsKey("kalle1"));
+    }
+
+    /**
+     * Test of getPlayerArray method, of class Gamelogic.
+     */
+    @Test
+    public void testGetPlayerArray() {
+        Gamelogic logic = new Gamelogic(this.dice);
+        logic.addPlayer("kalle");
+        logic.addPlayer("kalle");
+        assertEquals(logic.getPlayerArray().size(), 2);
     }
 
     /**
@@ -70,13 +89,11 @@ public class GamelogicTest {
      */
     @Test
     public void testGetNextPlayer() {
-        System.out.println("getNextPlayer");
-        Gamelogic instance = new Gamelogic();
-        String expResult = "";
-        String result = instance.getNextPlayer();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Gamelogic logic = new Gamelogic(this.dice);
+        logic.addPlayer("kalle");
+        logic.addPlayer("kalle");
+        assertEquals(logic.getNextPlayer(), "kalle");
+        assertEquals(logic.getNextPlayer(), "kalle1");
     }
 
     /**
@@ -84,77 +101,67 @@ public class GamelogicTest {
      */
     @Test
     public void testPeekNextPlayer() {
-        System.out.println("peekNextPlayer");
-        Gamelogic instance = new Gamelogic();
-        String expResult = "";
-        String result = instance.peekNextPlayer();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Gamelogic logic = new Gamelogic(this.dice);
+        logic.addPlayer("kalle");
+        logic.addPlayer("kalle");
+        assertEquals(logic.peekNextPlayer(), "kalle");
     }
-
-    /**
-     * Test of setNumberOfPlayers method, of class Gamelogic.
-     */
-    @Test
-    public void testSetNumberOfPlayers() {
-        System.out.println("setNumberOfPlayers");
-        int number = 0;
-        Gamelogic instance = new Gamelogic();
-        instance.setNumberOfPlayers(number);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getNumberOfPlayers method, of class Gamelogic.
-     */
-    @Test
-    public void testGetNumberOfPlayers() {
-        System.out.println("getNumberOfPlayers");
-        Gamelogic instance = new Gamelogic();
-        int expResult = 0;
-        int result = instance.getNumberOfPlayers();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     /**
      * Test of setFirstPlayer method, of class Gamelogic.
      */
     @Test
     public void testSetFirstPlayer() {
-        System.out.println("setFirstPlayer");
-        Object name = null;
-        Gamelogic instance = new Gamelogic();
-        instance.setFirstPlayer(name);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Gamelogic logic = new Gamelogic(this.dice);
+        logic.addPlayer("kalle");
+        logic.addPlayer("kalle");
+        logic.addPlayer("kalle");
+        String name = "kalle1";
+        logic.setFirstPlayer(name);
+        assertEquals(logic.playOrder.peek(), "kalle1");
     }
 
     /**
-     * Test of randomizeFirstPlayer method, of class Gamelogic.
+     * Test of resetLogic method, of class Gamelogic.
      */
     @Test
-    public void testRandomizeFirstPlayer() {
-        System.out.println("randomizeFirstPlayer");
-        Gamelogic instance = new Gamelogic();
-        instance.randomizeFirstPlayer();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testResetLogic() {
+        Gamelogic logic = new Gamelogic(this.dice);
+        logic.addPlayer("kalle");
+        logic.addPlayer("kalle");
+        String name = "kalle1";
+        logic.setFirstPlayer(name);
+        logic.resetLogic();
+        assertEquals(logic.getPlayerArray().size(), 0);
+        assertEquals(logic.getNumberOfPlayers(), 0);
+        assertEquals(logic.getPlayerList().size(), 0);
+        assertEquals(logic.playOrder.size(), 0);
     }
 
     /**
-     * Test of playersReset method, of class Gamelogic.
+     * Test of rollOnce method, of class Gamelogic.
      */
     @Test
-    public void testPlayersReset() {
-        System.out.println("playersReset");
-        Gamelogic instance = new Gamelogic();
-        instance.playersReset();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testRollOnce() {
+        Gamelogic logic = new Gamelogic(this.dice);
+        assertEquals(logic.rollOnce(), 2);
+    }
+
+    /**
+     * Test of getWinningOrder method, of class Gamelogic.
+     */
+    @Test
+    public void testGetWinningOrder() {
+        Gamelogic logic = new Gamelogic(this.dice);
+        logic.addPlayer("kalle");
+        logic.addPlayer("kalle");
+        logic.addPlayer("kalle");
+        int[] test = {1,2,3,4,5};
+        logic.getPlayer("kalle").getScorecard().addChance(test);
+        logic.getPlayer("kalle1").getScorecard().addUpperScore(test, 1);
+        logic.getPlayer("kalle2").getScorecard().addUpperScore(test, 4);
+        assertEquals(logic.getWinningOrder()[0].getName(), "kalle1");
+        assertEquals(logic.getWinningOrder()[1].getName(), "kalle2");
+        assertEquals(logic.getWinningOrder()[2].getName(), "kalle");
     }
     
 }
