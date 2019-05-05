@@ -1,6 +1,6 @@
 # Testausdokumentti
 
-Ohjelman yksikkötestit on toteutettu automatisoiduilla JUnit-testeillä ja järjestelmä/käyttöliittymätestit manuaalisesti.
+Ohjelman yksikkötestit on toteutettu automatisoiduilla JUnit-testeillä ja järjestelmä/käyttöliittymätestit manuaalisesti. Testit on kehitetty ja ajettu Apache Netbeans 11.0:lla, Java OpenJDK 9.0.4., Maven 3.5.2.
 
 ## Yksikkötestit
 
